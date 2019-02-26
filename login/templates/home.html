@@ -1,0 +1,38 @@
+{%load socialaccount%}
+{%providers_media_js%}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>간단한 지도 표시하기</title>
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=qswhj7djp7"></script>
+</head>
+<body>
+        <h1>안녕</h1>
+
+        <a href="/accounts/signup">회원가입</a>
+        <br>
+        
+        {%if user.is_authenticated%}
+        <a href="/accounts/logout">로그아웃</a>
+        {{user.username}} 님이 로그인 중
+        {%else%}
+        <a href="{%provider_login_url 'google'%}">구글 로그인</a>
+        로그인 해야됨
+        {%endif%}
+        
+<div id="map" style="width:50%;height:400px;"></div>
+
+<script>
+var mapOptions = {
+    center: new naver.maps.LatLng(37.551361, 127.073164),
+    zoom: 12
+};
+
+var map = new naver.maps.Map('map', mapOptions);
+</script>
+</body>
+</html>
